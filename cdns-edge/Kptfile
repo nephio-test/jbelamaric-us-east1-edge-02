@@ -1,0 +1,22 @@
+apiVersion: kpt.dev/v1
+kind: Kptfile
+metadata: # kpt-merge: /cdns-edge
+  name: cdns-edge
+  annotations:
+    config.kubernetes.io/local-config: "true"
+    internal.kpt.dev/upstream-identifier: 'kpt.dev|Kptfile|default|cdns-edge'
+upstream:
+  type: git
+  git:
+    repo: https://github.com/johnbelamaric/nephio-testorg-packages.git
+    directory: cachingdns-topology
+    ref: cachingdns-topology/v1
+upstreamLock:
+  type: git
+  git:
+    repo: https://github.com/johnbelamaric/nephio-testorg-packages.git
+    directory: cachingdns-topology
+    ref: cachingdns-topology/v1
+    commit: a50265d810ca870dadfcd39c48d82e2abfb47ef8
+info:
+  description: Deploys a multi-tiered, multi-cluster Caching DNS architecture based on CoreDNS.
