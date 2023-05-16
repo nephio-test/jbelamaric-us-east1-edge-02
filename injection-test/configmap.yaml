@@ -5,7 +5,9 @@ metadata: # kpt-merge: /regional-endpoints
   annotations:
     kpt.dev/config-injection: "required"
     internal.kpt.dev/upstream-identifier: '|ConfigMap|default|regional-endpoints'
+    kpt.dev/injected-resource: us-east1-endpoints
   namespace: default
 data:
-  db: db.platform.svc
-  auth: auth.platform.svc
+  auth: my-auth.example.com
+  db: my-db.example.com
+  queue: my-queue.example.com

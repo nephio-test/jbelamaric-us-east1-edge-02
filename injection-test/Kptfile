@@ -19,8 +19,16 @@ upstreamLock:
     ref: main
     commit: 53f3de8a9da180267e84209107096c74821e4916
 info:
+  readinessGates:
+  - conditionType: config.injection.ConfigMap.regional-endpoints
   description: Test package for the config injection of PackageVariant
 pipeline:
   mutators:
   - image: gcr.io/kpt-fn/set-namespace:v0.4.1
     configPath: set-namespace.yaml
+status:
+  conditions:
+  - type: config.injection.ConfigMap.regional-endpoints
+    status: "True"
+    message: injected resource "us-east1-endpoints" from cluster
+    reason: ConfigInjected
