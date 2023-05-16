@@ -1,0 +1,26 @@
+apiVersion: kpt.dev/v1
+kind: Kptfile
+metadata: # kpt-merge: /injection-test
+  name: injection-test
+  annotations:
+    config.kubernetes.io/local-config: "true"
+    internal.kpt.dev/upstream-identifier: 'kpt.dev|Kptfile|default|injection-test'
+upstream:
+  type: git
+  git:
+    repo: https://github.com/johnbelamaric/nephio-testorg-packages.git
+    directory: injection-test
+    ref: main
+upstreamLock:
+  type: git
+  git:
+    repo: https://github.com/johnbelamaric/nephio-testorg-packages.git
+    directory: injection-test
+    ref: main
+    commit: 53f3de8a9da180267e84209107096c74821e4916
+info:
+  description: Test package for the config injection of PackageVariant
+pipeline:
+  mutators:
+  - image: gcr.io/kpt-fn/set-namespace:v0.4.1
+    configPath: set-namespace.yaml
